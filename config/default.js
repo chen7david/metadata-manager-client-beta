@@ -7,6 +7,6 @@ export default {
     server:{
         protocol: 'http',
         hostname: '192.168.50.251',
-        port: '3010'
+        port: '3030'
     },
 }

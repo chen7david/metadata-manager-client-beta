@@ -1,9 +1,10 @@
 import axios from 'axios'
 import url from 'url'
-import store from '../store'
+import store from './../../store'
 import config from './../../../config/default'
-
+console.log(url.format(config.server))
 const http = axios.create({
+    
     baseURL: url.format(config.server),
     timeout: 12000
 })
@@ -19,7 +20,7 @@ http.interceptors.request.use((config) => {
 })
 
 http.interceptors.response.use((response) => {
-    const {isCargo, payload, details, directives } = response.data
+    const {isCargo, payload, details } = response.data
     store.dispatch('isLoading', false)
     if(isCargo) {
         response.data = payload
@@ -29,16 +30,13 @@ http.interceptors.response.use((response) => {
     store.dispatch('setValidation', null)
     return response
 }, (error) => {
-    const { isCargo, details, directives, payload } = error.response.data
+    const { isCargo, details } = error.response.data
     store.dispatch('isLoading', false)
     if(isCargo) {
         if(details.state == 'validation'){
             store.dispatch('setValidation', details)
         }else{
             store.dispatch('setSnackbar', details)
-        }
-        if(directives){
-            handelDirective(directives, payload)
         }
     }
     return Promise.reject(error)
