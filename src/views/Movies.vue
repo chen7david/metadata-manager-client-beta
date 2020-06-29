@@ -17,7 +17,7 @@
             </v-col>
         </v-row>
         <v-row>
-            <v-card cols="12" md="2" sm="6" v-for="movie of movies" :key="movie.id">
+            <v-card tile class="ma-5" cols="12" md="2" sm="6" max-width="200px" v-for="movie of movies" :key="movie.id">
                 <CoverCard :movie="movie"/>
             </v-card>
         </v-row>
