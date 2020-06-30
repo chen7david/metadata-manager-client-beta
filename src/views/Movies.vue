@@ -1,5 +1,3 @@
-
-
 <template>
     <v-content class="mx-5 gallery">
         <v-row class="gallery">
@@ -18,7 +16,7 @@
         </v-row>
         <v-row>
             <v-card tile class="ma-5" cols="12" md="2" sm="6" max-width="200px" v-for="movie of movies" :key="movie.id">
-                <CoverCard :movie="movie"/>
+                <MediaPoster :movie="movie"/>
             </v-card>
         </v-row>
     </v-content>
@@ -26,12 +24,14 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import CoverCard from './../components/CoverCard'
+import MediaPoster from './../components/MediaPoster'
 export default {
     name:'Movies',
-    data: () => ({}),
+    data: () => ({
+        keyword: null
+    }),
     components: {
-        CoverCard
+        MediaPoster
     },
     computed: {
         ...mapGetters([

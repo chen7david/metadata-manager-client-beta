@@ -2,7 +2,7 @@ import http from './http'
 
 export default {
 
-    /* ACCOUNT MANAGEMENT */
+    /* MOVIE MANAGEMENT */
 
     getMovies: async () => {
         return await http.get('/movies')

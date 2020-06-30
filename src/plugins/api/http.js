@@ -32,6 +32,7 @@ http.interceptors.response.use((response) => {
 }, (error) => {
     const { isCargo, details } = error.response.data
     store.dispatch('isLoading', false)
+    console.log(error.response.data)
     if(isCargo) {
         if(details.state == 'validation'){
             store.dispatch('setValidation', details)

@@ -16,6 +16,7 @@ export default {
     actions: {
         async getMovies({commit}){
             const { data } = await MovieService.getMovies()
+            
             commit('SET_MOVIES', data)
         },
     },
